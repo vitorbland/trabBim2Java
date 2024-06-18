@@ -1,23 +1,20 @@
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String args[]) {
         Scanner scanner = new Scanner(System.in);
         Garagem garagem = new Garagem();
+        Veiculo veiculo1 = new Carro("","",0);
+        Veiculo veiculo2 = new Moto("","",0,"");
 
         int opcao;
         do {
             System.out.println("------ Menu ------");
             System.out.println("1. Cadastrar veículo");
             System.out.println("2. Listar veículos");
-            System.out.println("3. Visualizar detalhes de um veículo");
-            System.out.println("4. Excluir veículo");
-            System.out.println("5. Editar veículo");
-            System.out.println("6. Listar pessoas (proprietários)");
-            System.out.println("7. Visualizar detalhes de uma pessoa");
-            System.out.println("8. Excluir pessoa");
-            System.out.println("9. Editar pessoa");
-            System.out.println("10. Sair");
+            System.out.println("3. Excluir veículo");
+            System.out.println("4. Editar veículo");
+            System.out.println("5. Sair");
             System.out.print("Escolha uma opção: ");
             opcao = scanner.nextInt();
             scanner.nextLine();
@@ -32,12 +29,12 @@ public class Main {
                     scanner.nextLine();
 
                     if (tipoVeiculo == 1) {
-                        Carro carro = new Carro("", "", 0, 0);
-                        carro.cadastrar();
+                        Carro carro = new Carro("", "", 0);
+                        carro.cadastrar(veiculo1);
                         garagem.adicionarVeiculo(carro);
                     } else if (tipoVeiculo == 2) {
                         Moto moto = new Moto("", "", 0, "");
-                        moto.cadastrar();
+                        moto.cadastrar(veiculo2);
                         garagem.adicionarVeiculo(moto);
                     } else {
                         System.out.println("Opção inválida!");
@@ -48,21 +45,6 @@ public class Main {
                     garagem.listarVeiculos();
                     break;
                 case 3:
-                    if (!garagem.veiculos.isEmpty()) {
-                        System.out.print("Índice do veículo para visualizar detalhes: ");
-                        int indiceVeiculo = lerIndice(scanner, garagem.veiculos.size());
-
-                        if (indiceVeiculo != -1) {
-                            Veiculo veiculoSelecionado = garagem.veiculos.get(indiceVeiculo);
-                            garagem.visualizarDetalhesVeiculo(veiculoSelecionado);
-                        } else {
-                            System.out.println("Índice inválido!");
-                        }
-                    } else {
-                        System.out.println("Não há veículos cadastrados na garagem.");
-                    }
-                    break;
-                case 4:
                     if (!garagem.veiculos.isEmpty()) {
                         System.out.print("Índice do veículo para excluir: ");
                         int indiceExcluir = lerIndice(scanner, garagem.veiculos.size());
@@ -76,7 +58,7 @@ public class Main {
                         System.out.println("Não há veículos cadastrados para excluir.");
                     }
                     break;
-                case 5:
+                case 4:
                     if (!garagem.veiculos.isEmpty()) {
                         System.out.print("Índice do veículo para editar: ");
                         int indiceEditarVeiculo = lerIndice(scanner, garagem.veiculos.size());
@@ -90,12 +72,12 @@ public class Main {
                             scanner.nextLine();
 
                             if (tipoEdicaoVeiculo == 1) {
-                                Carro novoCarro = new Carro("", "", 0, 0);
-                                novoCarro.cadastrar();
+                                Carro novoCarro = new Carro("", "", 0);
+                                novoCarro.cadastrar(veiculo1);
                                 garagem.editarVeiculo(indiceEditarVeiculo, novoCarro);
                             } else if (tipoEdicaoVeiculo == 2) {
                                 Moto novaMoto = new Moto("", "", 0, "");
-                                novaMoto.cadastrar();
+                                novaMoto.cadastrar(veiculo2);
                                 garagem.editarVeiculo(indiceEditarVeiculo, novaMoto);
                             } else {
                                 System.out.println("Opção inválida!");
@@ -107,63 +89,13 @@ public class Main {
                         System.out.println("Não há veículos cadastrados para editar.");
                     }
                     break;
-                case 6:
-                    System.out.println("Pessoas (proprietários) na garagem:");
-                    garagem.listarPessoas();
-                    break;
-                case 7:
-                    if (!garagem.pessoas.isEmpty()) {
-                        System.out.print("Índice da pessoa para visualizar detalhes: ");
-                        int indicePessoa = lerIndice(scanner, garagem.pessoas.size());
-
-                        if (indicePessoa != -1) {
-                            Pessoa pessoaSelecionada = garagem.pessoas.get(indicePessoa);
-                            garagem.visualizarDetalhesPessoa(pessoaSelecionada);
-                        } else {
-                            System.out.println("Índice inválido!");
-                        }
-                    } else {
-                        System.out.println("Não há pessoas cadastradas na garagem.");
-                    }
-                    break;
-                case 8:
-                    if (!garagem.pessoas.isEmpty()) {
-                        System.out.print("Índice da pessoa para excluir: ");
-                        int indiceExcluirPessoa = lerIndice(scanner, garagem.pessoas.size());
-
-                        if (indiceExcluirPessoa != -1) {
-                            garagem.excluirPessoa(indiceExcluirPessoa);
-                        } else {
-                            System.out.println("Índice inválido!");
-                        }
-                    } else {
-                        System.out.println("Não há pessoas cadastradas para excluir.");
-                    }
-                    break;
-                case 9:
-                    if (!garagem.pessoas.isEmpty()) {
-                        System.out.print("Índice da pessoa para editar: ");
-                        int indiceEditarPessoa = lerIndice(scanner, garagem.pessoas.size());
-
-                        if (indiceEditarPessoa != -1) {
-                        	
-                            Pessoa novaPessoa = new Pessoa("","",0);
-                            novaPessoa.cadastrar();
-                            garagem.editarPessoa(indiceEditarPessoa, novaPessoa);
-                        } else {
-                            System.out.println("Índice inválido!");
-                        }
-                    } else {
-                        System.out.println("Não há pessoas cadastradas para editar.");
-                    }
-                    break;
-                case 10:
+                case 5:
                     System.out.println("Saindo...");
                     break;
                 default:
                     System.out.println("Opção inválida! Digite novamente.");
             }
-        } while (opcao != 10);
+        } while (opcao != 5);
 
         scanner.close();
     }
