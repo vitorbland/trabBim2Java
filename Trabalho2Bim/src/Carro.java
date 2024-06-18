@@ -3,60 +3,44 @@ import java.util.Scanner;
 public class Carro extends Veiculo {
     private int numPortas;
 
-    public Carro(String marca, String modelo, int ano, int numPortas) {
+    public Carro(String marca, String modelo, int ano) {
         super(marca, modelo, ano);
-        this.numPortas = numPortas;
     }
 
-    public void cadastrar() {
+    public void cadastrar(Veiculo veiculo1) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Cadastro de Carro");
         System.out.print("Marca: ");
-        this.marca = scanner.nextLine();
+        veiculo1.setMarca(scanner.nextLine());
         System.out.print("Modelo: ");
-        this.modelo = scanner.nextLine();
+        veiculo1.setModelo(scanner.nextLine());
         System.out.print("Ano: ");
-        this.ano = scanner.nextInt();
+        veiculo1.setAno(scanner.nextInt());
         scanner.nextLine();
         System.out.print("Número de Portas: ");
-        this.numPortas = scanner.nextInt();
+        setNumPortas(scanner.nextInt());
         scanner.nextLine();
         System.out.println("Carro cadastrado com sucesso!");
     }
 
-    public void visualizarDetalhes() {
+    public void visualizarDetalhes(Carro veiculo1) {
         System.out.println("Detalhes do Carro:");
-        System.out.println("Marca: " + marca);
-        System.out.println("Modelo: " + modelo);
-        System.out.println("Ano: " + ano);
-        System.out.println("Número de Portas: " + numPortas);
+        System.out.println("Marca: " + veiculo1.getMarca());
+        System.out.println("Modelo: " +  veiculo1.getModelo());
+        System.out.println("Ano: " + veiculo1.getAno());
+        System.out.println("Número de Portas: " + getNumPortas());
     }
 
-    public void listar() {
-        System.out.println("Carro: " + marca + " " + modelo +  " (" + ano + ")");
+    public void listar(Carro veiculo1) {
+        System.out.println("Carro: " + veiculo1.getMarca() + " " + veiculo1.getModelo() + " " + veiculo1.getAno());
     }
 
-	protected int getMarca() {
-
-		return 0;
+	public int getNumPortas() {
+		return numPortas;
 	}
 
-	@Override
-	int getModelo() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	protected int getModelo1() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	protected int getAno() {
-		// TODO Auto-generated method stub
-		return 0;
+	public void setNumPortas(int numPortas) {
+		this.numPortas = numPortas;
 	}
 
 }
