@@ -2,59 +2,45 @@ import java.util.Scanner;
 
 public class Moto extends Veiculo {
     private String tipo;
-
+    
     public Moto(String marca, String modelo, int ano, String tipo) {
         super(marca, modelo, ano);
         this.tipo = tipo;
     }
 
-    public void cadastrar() {
+    public void cadastrar(Veiculo veiculo2) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Cadastro de Moto");
         System.out.print("Marca: ");
-        this.marca = scanner.nextLine();
+        veiculo2.setMarca(scanner.nextLine());
         System.out.print("Modelo: ");
-        this.modelo = scanner.nextLine();
+        veiculo2.setModelo(scanner.nextLine());
         System.out.print("Ano: ");
-        this.ano = scanner.nextInt();
+        veiculo2.setAno(scanner.nextInt());
         scanner.nextLine();
         System.out.print("Tipo: ");
-        this.tipo = scanner.nextLine();
+        setTipo(scanner.nextLine());
         System.out.println("Moto cadastrada com sucesso!");
     }
 
-    public void visualizarDetalhes() {
+    public void visualizarDetalhes(Moto veiculo2) {
         System.out.println("Detalhes da Moto:");
-        System.out.println("Marca: " + marca);
-        System.out.println("Modelo: " + modelo);
-        System.out.println("Ano: " + ano);
-        System.out.println("Tipo: " + tipo);
+        System.out.println("Marca: " + veiculo2.getMarca());
+        System.out.println("Modelo: " +  veiculo2.getModelo());
+        System.out.println("Ano: " + veiculo2.getAno());
+        System.out.println("Tipo: " + getTipo());
     }
     
-    public void listar() {
-        System.out.println("Moto: " + marca + " " + modelo + " (" + ano + ")");
+    public void listar(Moto veiculo2) {
+        System.out.println("Moto: " + veiculo2.getMarca() + " " + veiculo2.getModelo() + " " + veiculo2.getAno());
     }
 
-	protected int getMarca() {
-		
-		return 0;
+	public String getTipo() {
+		return tipo;
 	}
 
-	@Override
-	int getModelo() {
-		// TODO Auto-generated method stub
-		return 0;
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 
-	@Override
-	protected int getModelo1() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	protected int getAno() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 }
