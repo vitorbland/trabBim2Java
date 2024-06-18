@@ -1,7 +1,7 @@
 public abstract class Veiculo {
-    protected String marca;
-    protected String modelo;
-    protected int ano;
+    private String marca;
+    private String modelo;
+    private int ano;
 
     public Veiculo(String marca, String modelo, int ano) {
         this.marca = marca;
@@ -9,15 +9,34 @@ public abstract class Veiculo {
         this.ano = ano;
     }
 
-    public abstract void cadastrar();
-    public abstract void listar();
-    public abstract void visualizarDetalhes();
+	public String getMarca() {
+		return marca;
+	}
 
-	protected abstract int getMarca();
+	public void setMarca(String marca) {
+		this.marca = marca;
+	}
 
-	abstract int getModelo();
+	public String getModelo() {
+		return modelo;
+	}
 
-	protected abstract int getModelo1();
+	public void setModelo(String modelo) {
+		this.modelo = modelo;
+	}
 
-	protected abstract int getAno();
+	public int getAno() {
+		return ano;
+	}
+
+	public void setAno(int ano) {
+		this.ano = ano;
+	}
+
+	@Override
+	public String toString() {
+		return "Veiculo marca: " + marca + ", modelo: " + modelo + " ano: " + ano;
+	}
+
+
 }
